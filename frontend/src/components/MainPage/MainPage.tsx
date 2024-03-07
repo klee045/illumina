@@ -1,24 +1,24 @@
-import { Grid, TextField, Typography } from "@mui/material";
-import axios, { AxiosResponse } from "axios";
+import { Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import CardNumber from "../../common/models/CardNumber";
+import generateNumbers from "../../utils/generateNumbers";
 import NumberCard from "../NumberCard/NumberCard";
 import OperatorCard from "../OperatorCard/OperatorCard";
+import UserInput from "../UserInput/UserInput";
 import "./MainPage.css";
 
 const MainPage: () => JSX.Element = () => {
   const [numberOne, setNumberOne] = useState<number>(0);
   const [numberTwo, setNumberTwo] = useState<number>(0);
+  const [userAnswer, setUserAnswer] = useState<string>("");
+  const [isAnswerWrong, setIsAnswerWrong] = useState<boolean>(false);
+  const [score, setScore] = useState<number>(0);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4000/card_numbers`)
-      .then((res: AxiosResponse) => {
-        const {
-          data: { numberOne, numberTwo },
-        } = res;
-        setNumberOne(numberOne);
-        setNumberTwo(numberTwo);
-      });
+    generateNumbers().then((cardNumber: CardNumber) => {
+      setNumberOne(cardNumber.numberOne);
+      setNumberTwo(cardNumber.numberTwo);
+    });
   }, []);
 
   return (
@@ -44,7 +44,22 @@ const MainPage: () => JSX.Element = () => {
         </Grid>
 
         <Grid item>
-          <TextField id="outlined-basic" label="Answer" variant="outlined" />
+          <Typography variant="h2">Score: {score}</Typography>
+        </Grid>
+
+        <Grid item height={76} maxHeight={76}>
+          <UserInput
+            numberOne={numberOne}
+            setNumberOne={setNumberOne}
+            numberTwo={numberTwo}
+            setNumberTwo={setNumberTwo}
+            userAnswer={userAnswer}
+            setUserAnswer={setUserAnswer}
+            isAnswerWrong={isAnswerWrong}
+            setIsAnswerWrong={setIsAnswerWrong}
+            score={score}
+            setScore={setScore}
+          />
         </Grid>
       </Grid>
     </React.Fragment>
