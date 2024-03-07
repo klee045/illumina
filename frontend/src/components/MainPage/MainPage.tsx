@@ -2,15 +2,22 @@ import { Box, Grid, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import "./MainPage.css";
 import NumberCard from "../NumberCard/NumberCard";
-import { generateNumber } from "../../utils/generateNumber";
+import axios, { AxiosResponse } from "axios";
 
 const MainPage: () => JSX.Element = () => {
   const [numberOne, setNumberOne] = useState<number>(0);
   const [numberTwo, setNumberTwo] = useState<number>(0);
 
   useEffect(() => {
-    setNumberOne(generateNumber());
-    setNumberTwo(generateNumber());
+    axios
+      .get(`http://localhost:4000/card_numbers`)
+      .then((res: AxiosResponse) => {
+        const {
+          data: { numberOne, numberTwo },
+        } = res;
+        setNumberOne(numberOne);
+        setNumberTwo(numberTwo);
+      });
   }, []);
 
   return (
