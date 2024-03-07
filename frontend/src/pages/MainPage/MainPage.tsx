@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import CardNumber from "../../common/models/CardNumber";
 import Operation from "../../common/models/Operation";
 import NumberCard from "../../components/NumberCard/NumberCard";
-import OperatorCard from "../../components/OperatorCard/OperatorCard";
+import OperatorCard from "../../components/OperationCard/OperationCard";
 import StartStopButtons from "../../components/StartStopButtons/StartStopButtons";
 import Timer from "../../components/Timer/Timer";
 import UserInput from "../../components/UserInput/UserInput";
@@ -56,7 +56,7 @@ const MainPage: () => JSX.Element = () => {
 
         <Grid item container justifyContent={"center"} gap={2} height={"50vh"}>
           {numberOne >= 0 && <NumberCard num={numberOne} />}
-          <OperatorCard operator={operation} />
+          <OperatorCard operation={operation} />
           {numberTwo >= 0 && <NumberCard num={numberTwo} />}
         </Grid>
 
