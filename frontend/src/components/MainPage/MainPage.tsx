@@ -1,8 +1,9 @@
-import { Box, Grid, TextField, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import "./MainPage.css";
-import NumberCard from "../NumberCard/NumberCard";
+import { Grid, TextField, Typography } from "@mui/material";
 import axios, { AxiosResponse } from "axios";
+import React, { useEffect, useState } from "react";
+import NumberCard from "../NumberCard/NumberCard";
+import OperatorCard from "../OperatorCard/OperatorCard";
+import "./MainPage.css";
 
 const MainPage: () => JSX.Element = () => {
   const [numberOne, setNumberOne] = useState<number>(0);
@@ -38,6 +39,7 @@ const MainPage: () => JSX.Element = () => {
 
         <Grid item container justifyContent={"center"} gap={2} height={"50vh"}>
           {numberOne >= 0 && <NumberCard num={numberOne} />}
+          <OperatorCard operator={"x"} />
           {numberTwo >= 0 && <NumberCard num={numberTwo} />}
         </Grid>
 

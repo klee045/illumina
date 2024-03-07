@@ -1,5 +1,6 @@
-import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
+import express, { Express, Request, Response } from "express";
+import CardNumber from "./common/models/CardNumber";
 import NumberGeneratorService from "./services/NumberGeneratorService/NumberGeneratorService";
 
 const app: Express = express();
@@ -14,7 +15,7 @@ app.get("/", (req: Request, res: Response) => {
 /**
  * Card Numbers Routes
  */
-app.get("/card_numbers", (req: Request, res: Response) => {
+app.get("/card_numbers", (req: Request, res: Response<CardNumber>) => {
   const numberOne = NumberGeneratorService.generateNumber();
   const numberTwo = NumberGeneratorService.generateNumber();
 
