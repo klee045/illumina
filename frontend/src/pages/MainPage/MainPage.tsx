@@ -77,6 +77,8 @@ const MainPage: () => JSX.Element = () => {
             score={score}
             setScore={setScore}
             hasGameStarted={hasGameStarted}
+            operation={operation}
+            setOperation={setOperation}
           />
         </Grid>
 
