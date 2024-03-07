@@ -13,6 +13,7 @@ const UserInput: ({
   setIsAnswerWrong,
   score,
   setScore,
+  hasGameStarted,
 }: {
   numberOne: number;
   setNumberOne: React.Dispatch<React.SetStateAction<number>>;
@@ -24,6 +25,7 @@ const UserInput: ({
   setIsAnswerWrong: React.Dispatch<React.SetStateAction<boolean>>;
   score: number;
   setScore: React.Dispatch<React.SetStateAction<number>>;
+  hasGameStarted: boolean;
 }) => JSX.Element = ({
   numberOne,
   setNumberOne,
@@ -35,6 +37,7 @@ const UserInput: ({
   setIsAnswerWrong,
   score,
   setScore,
+  hasGameStarted,
 }) => {
   return (
     <React.Fragment>
@@ -44,6 +47,7 @@ const UserInput: ({
         variant="outlined"
         value={userAnswer}
         error={isAnswerWrong}
+        disabled={!hasGameStarted}
         helperText={isAnswerWrong ? "Incorrect" : ""}
         onChange={(
           e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

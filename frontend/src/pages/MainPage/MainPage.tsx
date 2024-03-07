@@ -1,10 +1,12 @@
 import { Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import CardNumber from "../../common/models/CardNumber";
+import NumberCard from "../../components/NumberCard/NumberCard";
+import OperatorCard from "../../components/OperatorCard/OperatorCard";
+import StartStopButtons from "../../components/StartStopButtons/StartStopButtons";
+import Timer from "../../components/Timer/Timer";
+import UserInput from "../../components/UserInput/UserInput";
 import generateNumbers from "../../utils/generateNumbers";
-import NumberCard from "../NumberCard/NumberCard";
-import OperatorCard from "../OperatorCard/OperatorCard";
-import UserInput from "../UserInput/UserInput";
 import "./MainPage.css";
 
 const MainPage: () => JSX.Element = () => {
@@ -13,6 +15,7 @@ const MainPage: () => JSX.Element = () => {
   const [userAnswer, setUserAnswer] = useState<string>("");
   const [isAnswerWrong, setIsAnswerWrong] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
+  const [hasGameStarted, setHasGameStarted] = useState<boolean>(false);
 
   useEffect(() => {
     generateNumbers().then((cardNumber: CardNumber) => {
@@ -37,6 +40,13 @@ const MainPage: () => JSX.Element = () => {
           <Typography variant="h2">Flash Card Game</Typography>
         </Grid>
 
+        <Grid item>
+          <Timer
+            hasGameStarted={hasGameStarted}
+            setHasGameStarted={setHasGameStarted}
+          />
+        </Grid>
+
         <Grid item container justifyContent={"center"} gap={2} height={"50vh"}>
           {numberOne >= 0 && <NumberCard num={numberOne} />}
           <OperatorCard operator={"x"} />
@@ -58,6 +68,21 @@ const MainPage: () => JSX.Element = () => {
             isAnswerWrong={isAnswerWrong}
             setIsAnswerWrong={setIsAnswerWrong}
             score={score}
+            setScore={setScore}
+            hasGameStarted={hasGameStarted}
+          />
+        </Grid>
+
+        <Grid
+          item
+          container
+          justifyContent="center"
+          direction="row"
+          spacing={2}
+        >
+          <StartStopButtons
+            hasGameStarted={hasGameStarted}
+            setHasGameStarted={setHasGameStarted}
             setScore={setScore}
           />
         </Grid>
