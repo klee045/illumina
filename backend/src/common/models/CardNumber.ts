@@ -1,7 +1,7 @@
 interface CardNumber {
   numberOne: number;
   numberTwo: number;
-  operator?: string;
+  operation?: string;
 }
 
 export default CardNumber;
