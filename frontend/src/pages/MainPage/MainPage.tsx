@@ -1,14 +1,12 @@
 import { Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import CardNumber from "../../common/models/CardNumber";
-import Operation from "../../common/models/Operation";
 import NumberCard from "../../components/NumberCard/NumberCard";
-import OperatorCard from "../../components/OperationCard/OperationCard";
+import OperatorCard from "../../components/OperatorCard/OperatorCard";
 import StartStopButtons from "../../components/StartStopButtons/StartStopButtons";
 import Timer from "../../components/Timer/Timer";
 import UserInput from "../../components/UserInput/UserInput";
 import generateNumbers from "../../utils/generateNumbers";
-import generateOperation from "../../utils/generateOperation";
 import "./MainPage.css";
 
 const MainPage: () => JSX.Element = () => {
@@ -18,16 +16,11 @@ const MainPage: () => JSX.Element = () => {
   const [isAnswerWrong, setIsAnswerWrong] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
   const [hasGameStarted, setHasGameStarted] = useState<boolean>(false);
-  const [operation, setOperation] = useState<string>("x");
 
   useEffect(() => {
     generateNumbers().then((cardNumber: CardNumber) => {
       setNumberOne(cardNumber.numberOne);
       setNumberTwo(cardNumber.numberTwo);
-    });
-
-    generateOperation().then((operation: Operation) => {
-      setOperation(operation.operation);
     });
   }, []);
 
@@ -56,7 +49,7 @@ const MainPage: () => JSX.Element = () => {
 
         <Grid item container justifyContent={"center"} gap={2} height={"50vh"}>
           {numberOne >= 0 && <NumberCard num={numberOne} />}
-          <OperatorCard operation={operation} />
+          <OperatorCard operator={"x"} />
           {numberTwo >= 0 && <NumberCard num={numberTwo} />}
         </Grid>
 
@@ -77,8 +70,6 @@ const MainPage: () => JSX.Element = () => {
             score={score}
             setScore={setScore}
             hasGameStarted={hasGameStarted}
-            operation={operation}
-            setOperation={setOperation}
           />
         </Grid>
 
