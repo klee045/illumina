@@ -2,9 +2,9 @@ import { Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import CardNumber from "../../common/models/CardNumber";
 import generateNumbers from "../../utils/generateNumbers";
-import NumberCard from "../NumberCard/NumberCard";
-import OperatorCard from "../OperatorCard/OperatorCard";
-import UserInput from "../UserInput/UserInput";
+import NumberCard from "../../components/NumberCard/NumberCard";
+import OperatorCard from "../../components/OperatorCard/OperatorCard";
+import UserInput from "../../components/UserInput/UserInput";
 import "./MainPage.css";
 
 const MainPage: () => JSX.Element = () => {
